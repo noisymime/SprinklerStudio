@@ -1,0 +1,66 @@
+{% include "templates/header.html" %}
+
+	<section id="intro">
+		<header>
+			<h2>Your Spiffy Tag Line Goes Here</h2>
+		</header>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
+		<img src="static/images/introimage.png" alt="lime" />
+	</section>
+	<div id="content">
+	    {% if sprinkler_list %}
+            {% for sprinkler in sprinkler_list %}
+                <article class="articlecontent">
+                <header><h2><a href="sprinklers/{{sprinkler.id}}">{{ sprinkler.name }}</a></h2></header>
+                <p>Currently the sprinkler status is: {{sprinkler.status}}</p>
+                </article>
+            {% endfor %}
+            {% else %}
+                <p>No active sprinklers were found.</p>
+            {% endif %}
+            <img src="images/slicedfruit.png" alt="sliced fruit" class="alignright" />
+
+		</div>
+		
+		{% include "templates/weatherWidget.html" %}
+		<aside>	
+			<section>
+				<header>
+					<h3>Sponsors</h3>
+				</header>
+					<img src="images/ad125.jpg" alt="ad" /> <img src="images/ad125.jpg" alt="ad" />
+					<br />
+					<img src="images/ad125.jpg" alt="ad" /> <img src="images/ad125.jpg" alt="ad" />
+					<br /><br />
+			</section>
+			
+			<section>
+				<header>
+					<h3>Connect With Us</h3>
+				</header>
+				<ul>
+					<li><a href="#">Twitter</a></li>
+					<li><a href="#">Facebook</a></li>
+					<li><a href="#">Google Buzz</a></li>
+				</ul>
+			</section>
+
+			<section>
+				<header>
+					<h3>Recent Articles</h3>
+				</header>
+					<ul>
+						<li><a href="#">How To Make Key Lime Pie</a></li>
+						<li><a href="#">Is Citrus Good For Skin Care?</a></li>
+					</ul>
+			</section>
+			
+		</aside>
+
+	<footer>
+		<br />
+		<p>&copy; 2010 <a href="#" title="your site name">yoursite.com</a></p>
+	</footer>
+<!-- Free template created by http://freehtml5templates.com -->
+</body>
+</html>
