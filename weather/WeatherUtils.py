@@ -19,7 +19,16 @@ def currentTemp():
     response = urllib2.urlopen(queryURL)
 
     decoder = json.JSONDecoder()
-    data = decoder.decode(response.read())["main"]["temp"]
+    temperature = decoder.decode(response.read())["main"]["temp"]
 
-    return (str(data) + " Degrees")
+    return (str(temperature) + " Degrees")
 
+def currentTempByLatLon(latitude, longitude):
+
+    queryURL = weatherURL + "lat=" + str(latitude) + "&lon=" + str(longitude)
+    response = urllib2.urlopen(queryURL)
+
+    decoder = json.JSONDecoder()
+    temperature = decoder.decode(response.read())["main"]["temp"]
+
+    return (str(temperature) + " Degrees")

@@ -1,0 +1,61 @@
+{% include "templates/header.html" %}
+
+
+	<section id="intro">
+		<header>
+			<h2>Sprinklers!</h2>
+		</header>
+		<p>Blah blah blah watering. Blah blah rain.</p>
+		<img src="/static/images/introimage.png" alt="lime" />
+	</section>
+	
+<div id="content">
+    <article class="articlecontent">
+        <p id="demo">Finding location...</p>
+    </article>
+        <article class="articlecontent">
+        <p id="demo2"></p>
+    </article>
+</div>
+
+<script>
+var x=document.getElementById("demo");
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition);
+      
+    }
+  else{x.innerHTML="Geolocation is not supported by this browser.";}
+  
+function showPosition(position)
+    {
+        x.innerHTML="Latitude: " + position.coords.latitude + 
+        "<br>Longitude: " + position.coords.longitude; 
+  
+        var xmlhttp;
+        if (window.XMLHttpRequest)
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {// code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    document.getElementById("demo2").innerHTML=xmlhttp.responseText;
+                }
+            }
+        document.getElementById("demo2").innerHTML= "Retrieving weather...";
+        xmlhttp.open("GET","/weather/ajax?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude,true);
+        xmlhttp.send();
+    }
+  
+  
+</script>
+
+
+</body>
+</html>
