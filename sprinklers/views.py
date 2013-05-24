@@ -5,19 +5,13 @@ from django.template import Context, loader
 from sprinklers.models import Sprinkler
 from sprinklers.models import LogEntry
 
-def get_sprinkler(sprinkler_id):
-    sprinkler_id = int(sprinkler_id)
-    try:
-        sprinkler = Sprinkler.objects.get(id=sprinkler_id)
-    except Sprinkler.DoesNotExist:
-        return None
-    return sprinkler
+#from sprinklers import SprinklerUtils
 
 def index(request):
     return HttpResponse("Hello, world. You're at the sprinkler index.")
 
 def detail(request, sprinkler_id):
-    tmp_sprinkler = get_sprinkler(sprinkler_id)
+    tmp_sprinkler = SprinklerUtils.get_sprinkler(sprinkler_id)
 
     log_entries = []
     #Retrieve all the log entries for this sprinkler
@@ -34,16 +28,7 @@ def detail(request, sprinkler_id):
     return HttpResponse(template.render(context))
 
 def on(request, sprinkler_id):
-    sprinkler = get_sprinkler(sprinkler_id)
-    #Check if sprinkler is already on
-    if sprinkler.status == True: return HttpResponse("Sprinkler already on")
-    sprinkler.status = True
-
-    #Insert the log entry
-    new_log = LogEntry(sprinkler_id=sprinkler.id)
-    new_log.save()
-    sprinkler.currentLog = new_log    
-    sprinkler.save()
+    SprinklerUtils.turn_on(sprinkler_id)
 
     return HttpResponse("Turning sprinkler on")
 

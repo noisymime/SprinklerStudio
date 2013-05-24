@@ -13,7 +13,13 @@
                 {% if sprinkler.enabled %}
                     <article class="articlecontent">
                     <header><h2><a href="sprinklers/{{sprinkler.id}}">{{ sprinkler.name }}</a></h2></header>
-                    <p>Currently the sprinkler status is: {{sprinkler.status}}</p>
+                    <p>
+                    Currently the sprinkler status is: {{sprinkler.status}}<br/>
+                    {% if not sprinkler.status %}| <a href="/sprinklers/{{sprinkler.id}}/on">Turn on </a>| Turn on for 10 mins | 
+                    {% else %}| <a href="/sprinklers/{{sprinkler.id}}/on">Turn Off</a> |
+                    {% endif %}
+                    </p>
+                    
                     </article>
                 {% endif %}
             {% endfor %}
