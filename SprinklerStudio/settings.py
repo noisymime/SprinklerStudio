@@ -137,6 +137,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'weather',
     'sprinklers',
+    'setup',
 )
 
 # A sample logging configuration. The only tangible logging

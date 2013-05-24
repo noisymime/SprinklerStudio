@@ -1,5 +1,17 @@
 {% include "templates/header.html" %}
 
+<script type="text/javascript">
+<!--
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+//-->
+</script>
+
 
 	<section id="intro">
 		<header>
@@ -10,6 +22,26 @@
 	</section>
 	
 <div id="content">
+
+        <form action="">
+        <h2><a href="#" onclick="toggle_visibility('sprinklers');">Sprinklers</a></h2>
+        <div id="sprinklers">
+        {% if sprinklers %}
+            {% for sprinkler in sprinklers %}
+                <article class="articlecontent" id="sprinkler_{{sprinkler.id}}">
+                <header><h3>{{sprinkler.id}}</h3></header>
+                <p>
+                <strong>Name:</strong> <input type="text" {{sprinkler.id}}_name value="{{ sprinkler.name }}"><br/>
+                <strong>Enabled: </strong><input type="checkbox" name="{{sprinkler.id}}_enabled" value="{{sprinkler.enabled}}" {% if sprinkler.enabled %}checked{% endif %}><br/>
+                <strong>Master valve: </strong><input type="checkbox" name="{{sprinkler.id}}_master" value="{{sprinkler.isMaster}}"> (Will turn on when any other sprinkler is on)
+                </p>
+                    </article>
+            {% endfor %}
+        {% else %}
+                <p>No active sprinklers were found.</p>
+        {% endif %}
+        </div>
+        </form>
     <article class="articlecontent">
         <p id="demo">Finding location...</p>
     </article>

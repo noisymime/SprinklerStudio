@@ -10,10 +10,12 @@
 	<div id="content">
 	    {% if sprinkler_list %}
             {% for sprinkler in sprinkler_list %}
-                <article class="articlecontent">
-                <header><h2><a href="sprinklers/{{sprinkler.id}}">{{ sprinkler.name }}</a></h2></header>
-                <p>Currently the sprinkler status is: {{sprinkler.status}}</p>
-                </article>
+                {% if sprinkler.enabled %}
+                    <article class="articlecontent">
+                    <header><h2><a href="sprinklers/{{sprinkler.id}}">{{ sprinkler.name }}</a></h2></header>
+                    <p>Currently the sprinkler status is: {{sprinkler.status}}</p>
+                    </article>
+                {% endif %}
             {% endfor %}
             {% else %}
                 <p>No active sprinklers were found.</p>

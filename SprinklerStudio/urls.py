@@ -17,5 +17,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^weather/', include('weather.urls')),
     url(r'^sprinklers/', include('sprinklers.urls')),
+    url(r'^setup/', include('setup.urls')),
     url(r'^$', views.index, name='index')
 )

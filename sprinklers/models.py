@@ -6,6 +6,7 @@ class Sprinkler(models.Model):
     name = models.CharField(max_length=60)
     enabled = models.BooleanField()
     status = models.BooleanField(default=False)
+    isMaster = models.BooleanField(default=False)
     currentLog = models.IntegerField(null=True, blank=True) #If the sprinkler is on, this variable contains the active log entry so it can be ended when it's turned off
 
 class LogEntry(models.Model):
